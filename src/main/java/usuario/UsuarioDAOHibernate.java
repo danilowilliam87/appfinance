@@ -1,5 +1,6 @@
 package usuario;
 
+
 import java.util.List;
 
 import org.hibernate.Query;
@@ -55,12 +56,13 @@ public class UsuarioDAOHibernate implements UsuarioDAO {
 		return (Usuario) consulta.uniqueResult();
 	}
 
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Usuario> listar() {
 		// TODO Auto-generated method stub
-		return this.session.createCriteria(Usuario.class)
-				.list();
+		return this.session.createCriteria(Usuario.class).list();
+		
 	}
 
 }
