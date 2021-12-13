@@ -17,13 +17,14 @@ public class UsuarioRN {
 		return this.usuarioDAO.carregar(codigo);
 	}
 	
-	public Usuario buscaPOrLogin(String login) {
+	public Usuario buscaPorLogin(String login) {
 		return this.usuarioDAO.buscaPorlogin(login);
 	}
 	
 	public void salvar(Usuario usuario) {
 		Integer codigo = usuario.getCodigo();
 		if(codigo == null  || codigo == 0) {
+			usuario.getPermissao().add("ROLE_USUARIO");
 			this.usuarioDAO.salvar(usuario);
 		}else {
 			this.usuarioDAO.atualizar(usuario);

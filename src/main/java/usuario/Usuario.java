@@ -2,14 +2,20 @@ package usuario;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.NaturalId;
 
@@ -43,6 +49,13 @@ public class Usuario implements Serializable{
 	private String idioma;
 	@Column(name = "ATIVO")
 	private boolean ativo;
+	
+	@ElementCollection(targetClass = String.class)
+	@JoinTable(name = "USUARIO_PERMISSAO", uniqueConstraints = {
+			@UniqueConstraint(columnNames = {"USUARIO", "PERMISSAO"})
+	}, joinColumns = @JoinColumn(name = "USUARIO"))
+	@Column(name = "PERMISSAO", length = 50)
+	private Set<String> permissao = new HashSet<String>();
 	
 	public Usuario() {
 		// TODO Auto-generated constructor stub
@@ -120,6 +133,18 @@ public class Usuario implements Serializable{
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
+	
+	
+
+	public Set<String> getPermissao() {
+		return permissao;
+	}
+
+
+	public void setPermissao(Set<String> permissao) {
+		this.permissao = permissao;
+	}
+
 
 	@Override
 	public int hashCode() {
