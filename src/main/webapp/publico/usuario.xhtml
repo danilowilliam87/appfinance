@@ -69,6 +69,22 @@
 				value="#{usuarioBean.confirmaSenha}" label="Confirma Senha"
 				size="10" maxlength="10" required="true" redisplay="true" />
 		</h:panelGrid>
+		<!-- inserção de form para preencher conta -->
+		<h:panelGroup rendered="#{empty usuarioBean.usuario.codigo}">
+		     <fieldSet>
+		          <legend>Conta Inicial</legend>
+		          <h:panelGrid columns="2">
+		              <h:outputLabel value="Descrição:" for="descricao"/>
+		              <h:inputText id="descricao" label="Descrição" value="#{usuarioBean.conta.descricao}" 
+		                            required="true" maxlength="45"/>
+		              
+		              <h:outputLabel value="Saldo Inicial:" for="saldoInicial"/>
+		              <h:inputText id="saldoIncial" value="#{usuarioBean.conta.saldoInicial}" size="10">
+		                  <f:convertNumber minFractionDigits="2"/>
+		              </h:inputText>              
+		          </h:panelGrid>
+		     </fieldSet>
+		</h:panelGroup>
 		<h:commandButton value="Salvar" action="#{usuarioBean.salvar}" />
 	</h:form>
 </h:body>

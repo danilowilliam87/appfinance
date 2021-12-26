@@ -23,5 +23,6 @@
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		<!--  <property name="hibernate.physical_naming_strategy">PhysicalNamingStrategyImpl</property> -->
 		<mapping class="usuario.Usuario"/> 
+		<mapping class="conta.Conta"/>
 	</session-factory>
 </hibernate-configuration>
