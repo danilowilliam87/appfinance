@@ -20,7 +20,6 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.NaturalId;
 
 @Entity
-@Table(name = "USUARIO")
 public class Usuario implements Serializable{
 
 	/**
@@ -30,31 +29,22 @@ public class Usuario implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "CODIGO")
 	private Integer codigo;
-	@Column(name = "NOME")
 	private String nome;
-	@Column(name = "EMAIL")
 	private String email;
 	@NaturalId
-	@Column(name = "LOGIN")
 	private String login;
-	@Column(name = "SENHA")
 	private String senha;
-	@Column(name = "NASCIMENTO")
 	private Date nascimento;
-	@Column(name = "CELUAR")
 	private String celular;
-	@Column(name = "IDIOMA")
 	private String idioma;
-	@Column(name = "ATIVO")
 	private boolean ativo;
 	
 	@ElementCollection(targetClass = String.class)
-	@JoinTable(name = "USUARIO_PERMISSAO", uniqueConstraints = {
-			@UniqueConstraint(columnNames = {"USUARIO", "PERMISSAO"})
-	}, joinColumns = @JoinColumn(name = "USUARIO"))
-	@Column(name = "PERMISSAO", length = 50)
+	@JoinTable(name = "usuario_permissao", uniqueConstraints = {
+			@UniqueConstraint(columnNames = {"usuario", "permissao"})
+	}, joinColumns = @JoinColumn(name = "usuario"))
+	@Column(name = "permissao", length = 50)
 	private Set<String> permissao = new HashSet<String>();
 	
 	public Usuario() {
@@ -148,8 +138,21 @@ public class Usuario implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(codigo);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (ativo ? 1231 : 1237);
+		result = prime * result + ((celular == null) ? 0 : celular.hashCode());
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((idioma == null) ? 0 : idioma.hashCode());
+		result = prime * result + ((login == null) ? 0 : login.hashCode());
+		result = prime * result + ((nascimento == null) ? 0 : nascimento.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((permissao == null) ? 0 : permissao.hashCode());
+		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
+		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -160,9 +163,58 @@ public class Usuario implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		return Objects.equals(codigo, other.codigo);
+		if (ativo != other.ativo)
+			return false;
+		if (celular == null) {
+			if (other.celular != null)
+				return false;
+		} else if (!celular.equals(other.celular))
+			return false;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (idioma == null) {
+			if (other.idioma != null)
+				return false;
+		} else if (!idioma.equals(other.idioma))
+			return false;
+		if (login == null) {
+			if (other.login != null)
+				return false;
+		} else if (!login.equals(other.login))
+			return false;
+		if (nascimento == null) {
+			if (other.nascimento != null)
+				return false;
+		} else if (!nascimento.equals(other.nascimento))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (permissao == null) {
+			if (other.permissao != null)
+				return false;
+		} else if (!permissao.equals(other.permissao))
+			return false;
+		if (senha == null) {
+			if (other.senha != null)
+				return false;
+		} else if (!senha.equals(other.senha))
+			return false;
+		return true;
 	}
-	
+
+
+		
 	
 	
 
