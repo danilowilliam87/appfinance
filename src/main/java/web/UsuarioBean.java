@@ -2,12 +2,14 @@ package web;
 
 import java.util.List;
 import java.util.Set;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8416fc4cc936c10f5ec4eca6be2e8f3ea5ea07b5
 import conta.Conta;
 import conta.ContaRN;
 import usuario.Usuario;
