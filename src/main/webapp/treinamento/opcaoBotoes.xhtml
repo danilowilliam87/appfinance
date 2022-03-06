@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<h:form>
+		<div class="card">
+			<h:form>
+			<h1>Escolha a opção para busca de endereco</h1>
+				<p:selectOneButton value="#{selectOneButtonView.option}">
+					<f:selectItem itemLabel="CEP" itemValue="CEP" />
+					<f:selectItem itemLabel="Logradouro" itemValue="Logradouro" />
+				</p:selectOneButton>
+			</h:form>
+		</div>
+	</h:form>
+</h:body>
+</html>

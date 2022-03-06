@@ -1,0 +1,33 @@
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    <h:form id="form-carrinho">
+      <h:panelGrid columns="2">
+          <h:outputLabel for="combo_item" value="Escolha o item"/>
+          <h:selectOneMenu id="combo_item" value="#{mercadoBean.item.nome}"
+            valueChangeListener="#{mercadoBean.acaoAlterarValorNome}" onchange="submit()">
+            
+             <f:selectItems value="#{mercadoBean.rotulos}"/>
+          </h:selectOneMenu>
+          
+           <h:outputLabel for="combo_marca" value="Escolha a marca"/>
+          <h:selectOneMenu id="combo_marca" value="#{mercadoBean.item.marca}" 
+          valueChangeListener="#{mercadoBean.acaoAlterarValorMarca}" onchange="submit()">
+           
+             <f:selectItems value="#{mercadoBean.marcas}"/>
+            
+          </h:selectOneMenu>
+          Preco por Unidade R$:<h:outputLabel id="preco" value="#{mercadoBean.item.preco}"/>
+           
+           <h:outputLabel for="combo_qtd" value="Escolha a quantidade"/>
+          <h:selectOneMenu id="combo_qtd" value="#{mercadoBean.item.qtdItem}"
+          valueChangeListener="#{mercadoBean.acaoAlterarQuantidade}" onchange="submit()" disabled="#{mercadoBean.desabilitarComboQuantidade}">
+             <f:selectItems value="#{mercadoBean.quantidades}"/>
+          </h:selectOneMenu>
+                
+          <h:commandButton action="#{mercadoBean.addItem}" value="Adicionar ao Carrinho" 
+          disabled="#{mercadoBean.desabilitar}"/>
+      </h:panelGrid>
+    </h:form>            
+</ui:composition>

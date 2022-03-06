@@ -1,0 +1,33 @@
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+   <h:form>
+       <h:panelGrid columns="2">
+        <h:outputLabel for="nome" value="Nome:"/>
+        <h:inputText id="nome" value="#{pessoaBean.pessoa.nome}"/>
+        
+        <h:outputLabel for="idade" value="Idade"/>
+        <h:inputText id="idade" value="#{pessoaBean.pessoa.idade}"/>
+        
+        <h:outputLabel for="nota" value="Nota"/>
+        <h:inputText id="nota" value="#{pessoaBean.pessoa.nota}"/>
+        
+        <h:outputLabel for="email" value="Email"/>
+        <h:inputText id="email" value="#{pessoaBean.pessoa.email}"/>
+        
+        <h:outputLabel for="curso" value="Curso"/>
+        <h:selectOneMenu value="#{pessoaBean.pessoa.curso}">
+          <f:selectItems value="#{pessoaBean.cursos}"/>
+        </h:selectOneMenu>
+        
+        <h:outputLabel for="semestre" value="Semestre"/>
+        <h:selectOneMenu id="semestre" value="#{pessoaBean.pessoa.semestre}">
+          <f:selectItems value="#{pessoaBean.semestres}"/>
+        </h:selectOneMenu>
+        
+        <h:commandButton action="#{pessoaBean.addPessoa}" value="Salvar"/>
+         <h:commandButton action="#{pessoaBean.updatePessoa}" value="Atualizar"/>
+      </h:panelGrid>  
+   </h:form>
+</ui:composition>
+

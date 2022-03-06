@@ -8,20 +8,26 @@
 <title>Insert title here</title>
 </h:head>
 <h:body>
-<h1>Cadastro de Pessoas</h1>
+<h1>Sistema de Lançamentos de Notas dos Alunos</h1>
   <h:form>
     <h:outputLabel value="Pagina para Cadastro de Pessoas"/>
     <h:panelGrid columns="2">
     <h:outputLabel for="nome" value="Nome"/>
-    <h:inputText id="nome" size="50" value="#{pessoaBean.pessoa.nome}" />
+    <h:inputText id="nome" size="50" value="#{pessoaBean.pessoa.nome}" required="true" requiredMessage="campo obrigatorio" />
     <h:outputLabel for="email" value="Email"/>
     <h:inputText id="email" size="30" value="#{pessoaBean.pessoa.email}"/>
     <h:outputLabel for="idade" value="Idade"/>
     <h:inputText id="idade" size="10" value="#{pessoaBean.pessoa.idade}"/>
+    <h:outputLabel for="nota" value="Nota"/>
+    <h:inputText id="nota" size="10" value="#{pessoaBean.pessoa.nota}"/>
     <h:outputLabel/>
+    
     <h:commandButton action="#{pessoaBean.addPessoa}" value="Enviar"/>
+     <h:outputLabel/>
+    <h:commandButton action="#{pessoaBean.updatePessoa}" value="Atualizar"/>
     </h:panelGrid>
-    <h:dataTable value="#{pessoaBean.pessoas}" var="pessoa" rules="rows">
+    <h:dataTable value="#{pessoaBean.pessoas}" var="pessoa" rules="rows" 
+    rendered="#{pessoaBean.renderiza}">
         <f:facet name="header">Listagem de Pessoas Cadastradas</f:facet>
         <f:facet name="footer">Final da Lista. Total de Cadastros : #{pessoaBean.qtdRegistros()}</f:facet>
         <h:column>
@@ -35,6 +41,26 @@
         <h:column>
            <f:facet name="header">Idade</f:facet>
            #{pessoa.idade}
+        </h:column>
+          <h:column>
+           <f:facet name="header">Nota</f:facet>
+           #{pessoa.nota}
+        </h:column>
+        <h:column>
+           <f:facet name="header">Situação</f:facet>
+           #{pessoa.situacao}
+        </h:column>
+        <h:column>   
+           <h:commandLink action="#{pessoaBean.removePessoa}" onclick="if (!confirm(' confirma a exclusão do usuário #{usuario.nome}? ' )) return false;">
+              Excluir
+              <f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}"/>
+           </h:commandLink>
+        </h:column>
+        <h:column>
+           <h:commandLink >
+              Editar
+              <f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}"/>
+           </h:commandLink>
         </h:column>
     </h:dataTable>
     </h:form>

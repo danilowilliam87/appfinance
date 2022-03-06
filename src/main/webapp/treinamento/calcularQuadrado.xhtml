@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+    </h:head>
+
+    <h:body>
+       <h:form>
+       <h1>Calcular area do Quadrado</h1>
+         <div class="card">
+          <div class="p-field p-col-12 p-md-4">
+                <p:outputLabel for="input1" value="Informe o lado"/>
+                <p:inputNumber id="input1" value="#{quadradoBean.lado}" />
+                <p:commandButton value="Calcular">
+                    <f:ajax render="inputRes"
+                            listener="#{quadradoBean.calcularArea()}"
+                            execute="@form"/>
+                </p:commandButton>
+            </div>
+
+         </div>
+           <div class="card">
+           <div class="p-field p-col-12 p-md-4">
+           <p:outputLabel for="inputRes" value="Resultado"/>
+               <p:inputNumber id="inputRes" disabled="true" value="#{quadradoBean.saida}" />
+           </div>
+           </div>
+       </h:form> 
+    </h:body>
+</html>
